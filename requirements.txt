@@ -1,0 +1,5 @@
+logfire
+pydantic
+pydantic-ai
+pydantic-ai[examples]
+
