@@ -15,10 +15,13 @@ class MyModel(BaseModel):
   city: str
   country: str
 
-agent = MyAgent(MyModel)
+agent = MyAgent('deepseek:deepseek-chat', MyModel)
 
-if __name__ == "__main__":
-  result = agent.run_sync('青色的城')
+def getCity(city: str = '青色的城') -> MyModel:
+  result = agent.run_sync(city)
   print(result.output)
   print(result.usage())
+  return result.output
 
+if __name__ == "__main__":
+  getCity()
