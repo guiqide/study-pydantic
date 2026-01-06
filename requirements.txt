@@ -2,4 +2,8 @@ logfire
 pydantic
 pydantic-ai
 pydantic-ai[examples]
-
+gradio
+httpx
+logfire
+asyncpg
+ollama

@@ -15,7 +15,7 @@ class MyModel(BaseModel):
   city: str
   country: str
 
-agent = MyAgent('deepseek:deepseek-chat', MyModel)
+agent = MyAgent('deepseek:deepseek-chat', output_type=MyModel)
 
 def getCity(city: str = '青色的城') -> MyModel:
   result = agent.run_sync(city)

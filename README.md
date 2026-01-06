@@ -21,4 +21,9 @@ source .venv/bin/activate
 python examples/minimal_pydantic_ai.py
 ```
 
+POSTGRES_HOST: 9.134.11.191
+POSTGRES_PORT: 5432
+POSTGRES_USER: postgres
+POSTGRES_PASSWORD: o5h^mDALrY^qH53h
+POSTGRES_DB: lang_translation_test
 
