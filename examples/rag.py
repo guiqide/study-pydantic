@@ -21,6 +21,8 @@ RAG 示例（PydanticAI）：用“向量检索”增强聊天 Agent 的回答�
 from __future__ import annotations as _annotations
 
 import asyncio
+import logging
+import pdb
 import re
 import sys
 import unicodedata
@@ -79,7 +81,8 @@ async def retrieve(context: RunContext[Deps], search_query: str) -> str:
         "SELECT url, title, content FROM doc_sections ORDER BY embedding <-> $1 LIMIT 8",
         embedding_json,
     )
-    return "\n\n".join(f'# {row["title"]}\nDocumentation URL:{row["url"]}\n\n{row["content"]}\n' for row in rows)
+    str = "\n\n".join(f'# {row["title"]}\nDocumentation URL:{row["url"]}\n\n{row["content"]}\n' for row in rows)
+    return str
 
 
 async def run_agent(question: str):
@@ -183,6 +186,7 @@ class DocsSection:
         return "\n\n".join((f"path: {self.path}", f"title: {self.title}", self.content))
 
 
+logging.basicConfig(level=logging.INFO)
 sessions_ta = TypeAdapter(list[DocsSection])
 
 
@@ -239,6 +243,7 @@ def slugify(value: str, separator: str, unicode: bool = False) -> str:
 
 
 if __name__ == "__main__":
+    logging.info(f"Searching for {sys.argv}")
     action = sys.argv[1] if len(sys.argv) > 1 else None
     if action == "build":
         asyncio.run(build_search_db())
